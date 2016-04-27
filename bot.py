@@ -5,16 +5,7 @@
 # This program is dedicated to the public domain under the CC0 license.
 
 """
-This Bot uses the Updater class to handle the bot.
-
-First, a few handler functions are defined. Then, those functions are passed to
-the Dispatcher and registered at their respective places.
-Then, the bot is started and runs until we press Ctrl-C on the command line.
-
-Usage:
-Basic inline bot example. Applies different text transformations.
-Press Ctrl-C on the command line or send a signal to the process to stop the
-bot.
+This bot handles inline queries for dota2 hero responses
 """
 from uuid import uuid4
 
@@ -34,8 +25,6 @@ import properties
 SCRIPT_DIR = os.path.dirname(__file__)
 heroes_dict = parser.dictionary_from_file("heroes.json")
 
-#RESPONSES_DB_CONN = sqlite3.connect(os.path.join(SCRIPT_DIR, 'responses.db'))
-#RESPONSES_DB_CURSOR = RESPONSES_DB_CONN.cursor()
 
 # Enable logging
 logging.basicConfig(
@@ -65,8 +54,6 @@ def inlinequery(bot, update):
     query = update.inline_query.query
     results = list()
     #logger.info("query: " + query)
-    if (query == ""):
-        return
 
     RESPONSES_DB_CONN = sqlite3.connect(os.path.join(SCRIPT_DIR, 'responses.db'))
     RESPONSES_DB_CURSOR = RESPONSES_DB_CONN.cursor()
